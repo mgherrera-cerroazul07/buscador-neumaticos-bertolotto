@@ -24,10 +24,10 @@
         .buscador-modulo {
             background: #ffffff;
             border: 2px solid #e1e1e1;
-            border-top: 5px solid #ff0000; /* Rojo Bertolotto */
+            border-top: 5px solid #c51118; /* Rojo Bertolotto Oscuro */
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 680px; /* Tamaño general más chico */
+            max-width: 720px; /* Un pelín más de margen interno */
             width: 100%;
             padding: 15px 20px;
             display: flex;
@@ -36,9 +36,9 @@
             gap: 15px;
         }
 
-        /* Sección Izquierda: Tu imagen de Canva sin deformarse */
+        /* Sección Izquierda: Tu imagen de Canva */
         .contenedor-imagen {
-            width: 240px; /* Ancho controlado para que no sature */
+            width: 230px; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -57,6 +57,7 @@
             flex-direction: column;
             gap: 10px;
             flex-grow: 1;
+            width: calc(100% - 245px); /* Fuerza a que no se desborde */
         }
 
         .titulo-form {
@@ -70,6 +71,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            width: 100%;
+            flex-wrap: nowrap; /* Evita que el botón salga del contenedor lineal */
         }
 
         .select-group {
@@ -79,10 +82,11 @@
             font-weight: bold;
             color: #444;
             font-size: 15px;
+            flex-shrink: 0;
         }
 
         .select-custom {
-            padding: 8px 10px;
+            padding: 8px 6px;
             border: 2px solid #e1e1e1;
             border-radius: 6px;
             background: #fff;
@@ -90,33 +94,35 @@
             outline: none;
             cursor: pointer;
             transition: border-color 0.2s;
-            min-width: 78px;
+            min-width: 75px;
         }
 
         .select-custom:focus {
-            border-color: #ff0000;
+            border-color: #c51118;
         }
 
         .btn-buscar {
-            background: #ff0000;
+            background: #c51118; /* Rojo Bertolotto Oscuro */
             color: #ffffff;
             border: none;
-            padding: 9px 16px;
+            padding: 9px 12px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
             white-space: nowrap;
             transition: background 0.2s;
+            flex-grow: 1; /* Ocupa el espacio justo restante dentro del recuadro */
+            text-align: center;
         }
 
         .btn-buscar:hover {
-            background: #cc0000;
+            background: #a30e13; /* Rojo aún más oscuro al pasar el mouse */
         }
 
         /* Adaptación para pantallas de Celulares */
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
             .buscador-modulo {
                 flex-direction: column;
                 padding: 15px;
@@ -141,21 +147,21 @@
             .btn-buscar {
                 width: 100%;
                 padding: 12px;
+                font-size: 13px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Recuadro Ajustado -->
     <div class="buscador-modulo">
         
-        <!-- Tu imagen de Canva vinculada directamente -->
+        <!-- Tu imagen de Canva -->
         <div class="contenedor-imagen">
             <img src="ruedaexplicativabertolotto.png" alt="Medidas Neumático" class="imagen-rueda">
         </div>
 
-        <!-- Formulario Derecho Ordenado -->
+        <!-- Formulario Derecho Ajustado -->
         <div class="contenedor-formulario">
             <div class="titulo-form">¿Qué medida de neumático estás buscando?</div>
             
@@ -208,11 +214,14 @@
                 return;
             }
 
-            // Sistema de búsqueda oficial de Tiendanube
             var urlDestino = "https://bertolottocarcenter.mitiendanube.com/search/?q=" + ancho + "+" + alto + "+" + rodado;
             
-            // Redirecciona la ventana del navegador completo
-            window.parent.location.href = urlDestino;
+            // CONTROL SEGURO: Si está metido en Tiendanube (iFrame) redirige la de fondo, si estás probando afuera abre pestaña nueva
+            if (window.self !== window.top) {
+                window.parent.location.href = urlDestino;
+            } else {
+                window.open(urlDestino, '_blank');
+            }
         }
     </script>
 </body>
