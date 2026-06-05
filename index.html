@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Neumáticos - Bertolotto</title>
+    <style>
+        * {
+            box-shadow: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        body {
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .buscador-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px 10px 20px;
+            background: #ffffff;
+            gap: 20px;
+        }
+        /* Nueva gráfica explicativa del neumático */
+        .grafica-neumatico {
+            display: flex;
+            align-items: center;
+            background: #111111; /* Negro institucional */
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 50px; /* Bordes redondeados modernos */
+            border-left: 5px solid #ff0000; /* Detalle rojo Bertolotto */
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .medida-ejemplo {
+            font-size: 20px;
+            color: #ffffff;
+            margin: 0 15px;
+            letter-spacing: 1px;
+        }
+        .indicador {
+            color: #ff0000; /* Rojo Bertolotto para destacar */
+            font-size: 11px;
+            text-transform: uppercase;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Formulario de búsqueda */
+        .form-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+        .titulo-form {
+            font-size: 16px;
+            font-weight: 700;
+            color: #111111;
+        }
+        .select-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        .select-custom {
+            padding: 8px 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 14px;
+            min-width: 90px;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .select-custom:focus {
+            border-color: #ff0000; /* Foco Rojo Bertolotto */
+        }
+        .btn-buscar {
+            background: #ff0000; /* Botón Rojo Bertolotto */
+            color: #ffffff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-buscar:hover {
+            background: #cc0000; /* Variante de rojo al pasar el mouse */
+        }
+
+        /* Adaptación para Celulares */
+        @media (max-width: 768px) {
+            .buscador-wrapper {
+                flex-direction: column;
+                padding: 15px;
+                text-align: center;
+            }
+            .grafica-neumatico {
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
+            }
+            .form-container {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+            .select-group {
+                width: 100%;
+                justify-content: center;
+            }
+            .btn-buscar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="buscador-wrapper">
+        
+        <!-- Gráfica Explicativa Rediseñada (No Plagio) -->
+        <div class="grafica-neumatico">
+            <span class="indicador">Ancho</span>
+            <span class="medida-ejemplo">205</span>
+            <span class="indicador">Alto</span>
+            <span class="medida-ejemplo">/ 55</span>
+            <span class="indicador">R</span>
+            <span class="medida-ejemplo">16</span>
+        </div>
+
+        <!-- Formulario de Medidas -->
+        <div class="form-container">
+            <span class="titulo-form">¿Qué medida de neumático estás buscando?</span>
+            
+            <div class="select-group">
+                <select id="ancho" class="select-custom">
+                    <option value="">Ancho</option>
+                    <option value="175">175</option>
+                    <option value="185">185</option>
+                    <option value="195">195</option>
+                    <option value="205">205</option>
+                    <option value="215">215</option>
+                </select>
+                
+                <span>/</span>
+                
+                <select id="alto" class="select-custom">
+                    <option value="">Alto</option>
+                    <option value="45">45</option>
+                    <option value="50">50</option>
+                    <option value="55">55</option>
+                    <option value="60">60</option>
+                    <option value="65">65</option>
+                    <option value="70">70</option>
+                </select>
+                
+                <span>R</span>
+                
+                <select id="rodado" class="select-custom">
+                    <option value="">Rodado</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                </select>
+            </div>
+
+            <button type="button" class="btn-buscar" onclick="ejecutarBusqueda()">Buscar mi neumático</button>
+        </div>
+
+    </div>
+
+    <script>
+        function ejecutarBusqueda() {
+            var ancho = document.getElementById('ancho').value;
+            var alto = document.getElementById('alto').value;
+            var rodado = document.getElementById('rodado').value;
+
+            if (!ancho || !alto || !rodado) {
+                alert("Por favor, seleccioná las tres medidas para iniciar la búsqueda.");
+                return;
+            }
+
+            // Aquí armamos la URL destino hacia los resultados de Tiendanube
+            var urlDestino = "https://bertolottocarcenter.mitiendanube.com/neumaticos/" + ancho + "-" + alto + "-" + rodado;
+            
+            // Redirecciona la página madre hacia los productos filtrados
+            window.parent.location.href = urlDestino;
+        }
+    </script>
+</body>
+</html>
