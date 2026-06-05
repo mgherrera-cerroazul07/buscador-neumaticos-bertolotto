@@ -27,7 +27,7 @@
             border-top: 5px solid #c51118; /* Rojo Bertolotto Oscuro */
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 720px; /* Un pelín más de margen interno */
+            max-width: 720px;
             width: 100%;
             padding: 15px 20px;
             display: flex;
@@ -57,7 +57,7 @@
             flex-direction: column;
             gap: 10px;
             flex-grow: 1;
-            width: calc(100% - 245px); /* Fuerza a que no se desborde */
+            width: calc(100% - 245px);
         }
 
         .titulo-form {
@@ -72,7 +72,7 @@
             align-items: center;
             gap: 10px;
             width: 100%;
-            flex-wrap: nowrap; /* Evita que el botón salga del contenedor lineal */
+            flex-wrap: nowrap;
         }
 
         .select-group {
@@ -102,7 +102,7 @@
         }
 
         .btn-buscar {
-            background: #c51118; /* Rojo Bertolotto Oscuro */
+            background: #c51118;
             color: #ffffff;
             border: none;
             padding: 9px 12px;
@@ -113,12 +113,12 @@
             text-transform: uppercase;
             white-space: nowrap;
             transition: background 0.2s;
-            flex-grow: 1; /* Ocupa el espacio justo restante dentro del recuadro */
+            flex-grow: 1;
             text-align: center;
         }
 
         .btn-buscar:hover {
-            background: #a30e13; /* Rojo aún más oscuro al pasar el mouse */
+            background: #a30e13;
         }
 
         /* Adaptación para pantallas de Celulares */
@@ -161,7 +161,7 @@
             <img src="ruedaexplicativabertolotto.png" alt="Medidas Neumático" class="imagen-rueda">
         </div>
 
-        <!-- Formulario Derecho Ajustado -->
+        <!-- Formulario Derecho -->
         <div class="contenedor-formulario">
             <div class="titulo-form">¿Qué medida de neumático estás buscando?</div>
             
@@ -214,9 +214,9 @@
                 return;
             }
 
-            var urlDestino = "https://bertolottocarcenter.mitiendanube.com/search/?q=" + ancho + "+" + alto + "+" + rodado;
+            /* DIRECCIÓN QUIRÚRGICA CORREGIDA: Apunta directo a la subtienda de prueba 3 y a la categoría real */
+            var urlDestino = "https://bertolottocarcenter3.mitiendanube.com/neumaticos-y-llantas/?q=" + ancho + "+" + alto + "+" + rodado;
             
-            // CONTROL SEGURO: Si está metido en Tiendanube (iFrame) redirige la de fondo, si estás probando afuera abre pestaña nueva
             if (window.self !== window.top) {
                 window.parent.location.href = urlDestino;
             } else {
