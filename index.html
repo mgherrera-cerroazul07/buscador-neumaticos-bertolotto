@@ -17,119 +17,50 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
         
-        /* Contenedor tipo recuadro compacto y centrado (Menos ancho) */
+        /* Contenedor tipo recuadro bien compacto y centrado */
         .buscador-modulo {
             background: #ffffff;
             border: 2px solid #e1e1e1;
             border-top: 5px solid #ff0000; /* Rojo Bertolotto */
             border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-            max-width: 850px; /* Ancho acotado para que no ocupe todo */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 680px; /* Tamaño general más chico */
             width: 100%;
-            padding: 25px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
-            position: relative;
-            overflow: hidden;
+            gap: 15px;
         }
 
-        /* --- SECCIÓN IZQUIERDA: GRÁFICA DE LA RUEDA --- */
-        .contenedor-rueda {
-            position: relative;
-            width: 320px;
-            height: 140px;
+        /* Sección Izquierda: Tu imagen de Canva sin deformarse */
+        .contenedor-imagen {
+            width: 240px; /* Ancho controlado para que no sature */
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: flex-end;
-            overflow: hidden;
             flex-shrink: 0;
         }
-
-        /* Silueta de la cubierta en CSS */
-        .silueta-cubierta {
-            position: absolute;
-            bottom: -170px;
-            width: 300px;
-            height: 300px;
-            border: 35px solid #222222;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding-top: 8px;
-            background: #111111;
-            box-shadow: inset 0 0 10px rgba(255,255,255,0.1);
+        .imagen-rueda {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
-        /* Texto de la medida sobre la goma */
-        .texto-medida-rueda {
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            transform: translateY(-2px);
-            white-space: nowrap;
-        }
-
-        /* Flechas e Indicadores estilo Gomería Central */
-        .linea-indicadora {
-            position: absolute;
-            color: #ff0000; /* Rojo Bertolotto */
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Indicador ANCHO */
-        .ind-ancho {
-            bottom: 60px;
-            left: 5px;
-            width: 85px;
-            border-bottom: 2px solid #ff0000;
-            border-left: 2px solid #ff0000;
-            padding-left: 4px;
-            height: 15px;
-        }
-
-        /* Indicador ALTO */
-        .ind-alto {
-            top: 10px;
-            left: 135px;
-            height: 40px;
-            border-left: 2px solid #ff0000;
-            border-top: 2px solid #ff0000;
-            padding-top: 2px;
-            padding-left: 4px;
-        }
-
-        /* Indicador RODADO */
-        .ind-rodado {
-            bottom: 60px;
-            right: 5px;
-            width: 85px;
-            border-bottom: 2px solid #ff0000;
-            border-right: 2px solid #ff0000;
-            text-align: right;
-            padding-right: 4px;
-            height: 15px;
-        }
-
-        /* --- SECCIÓN DERECHA: FORMULARIO --- */
+        /* Sección Derecha: Todo el bloque del formulario encerrado */
         .contenedor-formulario {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
             flex-grow: 1;
         }
 
         .titulo-form {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 700;
             color: #111111;
             line-height: 1.3;
@@ -138,28 +69,28 @@
         .inputs-wrapper {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .select-group {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             font-weight: bold;
             color: #444;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .select-custom {
-            padding: 10px 12px;
+            padding: 8px 10px;
             border: 2px solid #e1e1e1;
             border-radius: 6px;
             background: #fff;
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
             cursor: pointer;
             transition: border-color 0.2s;
-            min-width: 85px;
+            min-width: 78px;
         }
 
         .select-custom:focus {
@@ -170,9 +101,9 @@
             background: #ff0000;
             color: #ffffff;
             border: none;
-            padding: 11px 22px;
+            padding: 9px 16px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
@@ -184,16 +115,15 @@
             background: #cc0000;
         }
 
-        /* --- RESPONSIVE CELULARES --- */
-        @media (max-width: 768px) {
+        /* Adaptación para pantallas de Celulares */
+        @media (max-width: 600px) {
             .buscador-modulo {
                 flex-direction: column;
-                padding: 20px;
+                padding: 15px;
                 text-align: center;
             }
-            .contenedor-rueda {
-                transform: scale(0.9);
-                margin-bottom: -10px;
+            .contenedor-imagen {
+                width: 200px;
             }
             .contenedor-formulario {
                 width: 100%;
@@ -202,7 +132,7 @@
             .inputs-wrapper {
                 flex-direction: column;
                 width: 100%;
-                gap: 15px;
+                gap: 12px;
             }
             .select-group {
                 width: 100%;
@@ -210,28 +140,22 @@
             }
             .btn-buscar {
                 width: 100%;
-                padding: 14px;
+                padding: 12px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Módulo Centralizado -->
+    <!-- Recuadro Ajustado -->
     <div class="buscador-modulo">
         
-        <!-- Rueda Gráfica Personalizada (No Plagio) -->
-        <div class="contenedor-rueda">
-            <div class="linea-indicadora ind-ancho">Ancho</div>
-            <div class="linea-indicadora ind-alto">Alto</div>
-            <div class="linea-indicadora ind-rodado">Rodado</div>
-            
-            <div class="silueta-cubierta">
-                <div class="texto-medida-rueda">205 / 55 R 16</div>
-            </div>
+        <!-- Tu imagen de Canva vinculada directamente -->
+        <div class="contenedor-imagen">
+            <img src="ruedaexplicativabertolotto.png" alt="Medidas Neumático" class="imagen-rueda">
         </div>
 
-        <!-- Formulario de Selección -->
+        <!-- Formulario Derecho Ordenado -->
         <div class="contenedor-formulario">
             <div class="titulo-form">¿Qué medida de neumático estás buscando?</div>
             
@@ -284,10 +208,10 @@
                 return;
             }
 
-            // Apunta directo al sistema de búsquedas oficial de Tiendanube
+            // Sistema de búsqueda oficial de Tiendanube
             var urlDestino = "https://bertolottocarcenter.mitiendanube.com/search/?q=" + ancho + "+" + alto + "+" + rodado;
             
-            // Redirecciona la web contenedora principal
+            // Redirecciona la ventana del navegador completo
             window.parent.location.href = urlDestino;
         }
     </script>
