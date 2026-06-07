@@ -18,6 +18,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 10px;
+            position: relative;
         }
         
         /* Contenedor tipo recuadro bien compacto y centrado */
@@ -34,6 +35,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 15px;
+            position: relative;
         }
 
         /* Sección Izquierda: Tu imagen de Canva */
@@ -121,6 +123,24 @@
             background: #a30e13;
         }
 
+        /* Cartelito flotante estético de aviso (Toast) */
+        .toast-aviso {
+            position: absolute;
+            bottom: -35px;
+            right: 20px;
+            background: #111111;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+            border-left: 4px solid #c51118;
+            transition: opacity 0.3s ease;
+        }
+
         /* Adaptación para pantallas de Celulares */
         @media (max-width: 650px) {
             .buscador-modulo {
@@ -148,6 +168,12 @@
                 width: 100%;
                 padding: 12px;
                 font-size: 13px;
+            }
+            .toast-aviso {
+                position: static;
+                margin-top: 8px;
+                width: 100%;
+                text-align: center;
             }
         }
     </style>
@@ -201,6 +227,9 @@
             </div>
         </div>
 
+        <!-- Elemento de Alerta Fina en Pantalla -->
+        <div id="toast-error" class="toast-aviso">Por favor, seleccioná las tres medidas.</div>
+
     </div>
 
     <script>
@@ -208,13 +237,20 @@
             var ancho = document.getElementById('ancho').value;
             var alto = document.getElementById('alto').value;
             var rodado = document.getElementById('rodado').value;
+            var toast = document.getElementById('toast-error');
 
             if (!ancho || !alto || !rodado) {
-                alert("Por favor, seleccioná las tres medidas.");
+                // Muestra la alerta integrada sin usar el alert flotante feo del navegador
+                toast.style.display = 'block';
+                
+                // Lo vuelve a ocultar automáticamente a los 3 segundos
+                setTimeout(function() {
+                    toast.style.display = 'none';
+                }, 3500);
                 return;
             }
 
-            /* DIRECCIÓN QUIRÚRGICA CORREGIDA: Apunta directo a la subtienda de prueba 3 y a la categoría real */
+            toast.style.display = 'none';
             var urlDestino = "https://bertolottocarcenter3.mitiendanube.com/neumaticos-y-llantas/?q=" + ancho + "+" + alto + "+" + rodado;
             
             if (window.self !== window.top) {
